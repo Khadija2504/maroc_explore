@@ -8,6 +8,8 @@ use App\Models\Itineraire;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
+use function PHPUnit\Framework\assertJson;
+
 class itinerataireController extends Controller
 {
     public function itineraire(Request $request){
@@ -43,7 +45,7 @@ class itinerataireController extends Controller
         ]);
     }
     public function diaplayItineraire(){
-        $itineraire = Itineraire::all();
+        $itineraire = Itineraire::where('id', 1)->get();
         return response()->json([
             'msg' => 'Les itineraires dans la plateforme',
             'itineraire' => $itineraire,
@@ -124,4 +126,9 @@ class itinerataireController extends Controller
             'itineraire' => $itineraire,
         ]);
     }
+    // public function test_api_return(){
+    //     $itineraire = Itineraire::factory()->create();
+    //     $response = $this->getJson('/api/itineraire');
+    //     $response->assertJson([$itineraire->toArray()]);
+    // }
 }
